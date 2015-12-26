@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- generator="FeedCreator 1.7.2" -->
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://theoatmeal.com/feed/rss">
+        <title>The Oatmeal - Comics, Quizzes, &amp; Stories</title>
+        <description>The oatmeal tastes better than stale skittles found under the couch cushions</description>
+        <link>http://theoatmeal.com/</link>
+       <dc:date>2015-12-25T21:40:07+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://theoatmeal.com/comics/autocorrect"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/blog/where_matt"/>
+                <rdf:li rdf:resource="http://www.explodingkittens.com/kittyconvict"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/blog/black_friday2015"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/comics/holidays"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/comics/plane"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/blog/saucony"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/comics/exposure"/>
+                <rdf:li rdf:resource="http://theoatmeal.com/comics/fomo"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <item rdf:about="http://theoatmeal.com/comics/autocorrect">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-12-15T20:02:00+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>Autocorrect hates you</title>
+        <link>http://theoatmeal.com/comics/autocorrect</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/comics/autocorrect&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/autocorrect.png&quot; alt=&quot;Autocorrect hates you&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/comics/autocorrect&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/blog/where_matt">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-12-09T19:49:49+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>Are you having a bad day?</title>
+        <link>http://theoatmeal.com/blog/where_matt</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/blog/where_matt&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/where_matt.png&quot; alt=&quot;Are you having a bad day?&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;Where the heck is Matt?&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/blog/where_matt&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://www.explodingkittens.com/kittyconvict">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-12-01T19:47:51+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>Do you have an indoor cat?</title>
+        <link>http://www.explodingkittens.com/kittyconvict</link>
+        <description>&lt;a href=&quot;http://www.explodingkittens.com/kittyconvict&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/kitty_convict.png&quot; alt=&quot;Do you have an indoor cat?&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;Orange is the new cat. &lt;/p&gt;&lt;a href=&quot;http://www.explodingkittens.com/kittyconvict&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/blog/black_friday2015">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-27T20:12:40+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>Black Friday</title>
+        <link>http://theoatmeal.com/blog/black_friday2015</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/blog/black_friday2015&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/black_friday2015.png&quot; alt=&quot;Black Friday&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;Our 2015 Black Friday Sale.&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/blog/black_friday2015&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/comics/holidays">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-23T17:17:20+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>The next three holidays</title>
+        <link>http://theoatmeal.com/comics/holidays</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/comics/holidays&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/holidays.png&quot; alt=&quot;The next three holidays&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/comics/holidays&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/comics/plane">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-10T20:43:00+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>It's going to be okay.</title>
+        <link>http://theoatmeal.com/comics/plane</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/comics/plane&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/plane.png&quot; alt=&quot;It's going to be okay.&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/comics/plane&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/blog/saucony">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-11-09T17:49:56+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>My life in 171 seconds</title>
+        <link>http://theoatmeal.com/blog/saucony</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/blog/saucony&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/saucony.png&quot; alt=&quot;My life in 171 seconds&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;Saucony made a mini-documentary about my life. &lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/blog/saucony&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/comics/exposure">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-10-29T19:32:39+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>You're doing it for the EXPOSURE</title>
+        <link>http://theoatmeal.com/comics/exposure</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/comics/exposure&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/exposure.png&quot; alt=&quot;You're doing it for the EXPOSURE&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/comics/exposure&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+    <item rdf:about="http://theoatmeal.com/comics/fomo">
+        <dc:format>text/html</dc:format>
+        <dc:date>2015-10-27T20:50:34+01:00</dc:date>
+        <dc:source>http://theoatmeal.com</dc:source>
+        <dc:creator>Matthew Inman</dc:creator>
+        <title>I used to suffer from FOMO</title>
+        <link>http://theoatmeal.com/comics/fomo</link>
+        <description>&lt;a href=&quot;http://theoatmeal.com/comics/fomo&quot;&gt;&lt;img src=&quot;http://s3.amazonaws.com/theoatmeal-img/thumbnails/fomo.png&quot; alt=&quot;I used to suffer from FOMO&quot; class=&quot;border0&quot; /&gt;&lt;/a&gt;&lt;p&gt;&lt;/p&gt;&lt;a href=&quot;http://theoatmeal.com/comics/fomo&quot;&gt;View&lt;/a&gt;</description>
+    </item>
+</rdf:RDF>
