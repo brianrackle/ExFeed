@@ -11,7 +11,7 @@ defmodule ExFeed do
   import SweetXml
 
   defmodule FeedItem do
-    defstruct title: nil, home: nil, link: nil, description: nil, date: nil
+    defstruct title: nil, source: nil, link: nil, description: nil, date: nil
   end
 
   defmodule Feed do
@@ -20,18 +20,18 @@ defmodule ExFeed do
 
   def parse(format, xml) do
     case format do
-      :rss -> parse_rss(xml)
-      :rdf -> parse_rdf(xml)
-      :atom -> parse_atom(xml)
+      :rss -> xml |> parse_rss |> to_feed
+      :rdf -> xml |> parse_rdf |> to_feed
+      :atom -> xml |> parse_atom |> to_feed
       _ -> {:error, nil}
     end
   end
 
   def feed_type(xml) do
     cond do
-      path?(xml, ~x"//rss") -> :rss
-      path?(xml, ~x"//rdf:RDF") -> :rdf
-      path?(xml, ~x"//atom") -> :atom
+      path?(xml, ~x"//rss"o) -> :rss
+      path?(xml, ~x"//rdf:RDF"o) -> :rdf
+      path?(xml, ~x"//atom"o) -> :atom
       true -> nil
     end
   end
@@ -44,13 +44,12 @@ defmodule ExFeed do
     end
   end
 
-  defp parse_rss(xml) do
-    feed = parse_rss_stream(xml)
+  defp to_feed(feed) do
     items = for item <- feed.items, do: struct(FeedItem, item)
     {:ok, %{struct(Feed, feed) | items: items}}
   end
 
-  defp parse_rss_stream(xml) do
+  defp parse_rss(xml) do
     xml |>
     xpath(
     ~x"//rss/channel",
@@ -60,7 +59,7 @@ defmodule ExFeed do
     items: [
       ~x"./item"l,
       title: ~x"./title/text()"s,
-      home: ~x"./link/text()"s,
+      source: ~x"./link/text()"s,
       link: ~x"./guid/text()"s,
       description: ~x"./description/text()"s,
       date: ~x"./pubDate/text()"s
@@ -69,8 +68,22 @@ defmodule ExFeed do
   end
 
   #returns {:ok, feed} on success
-  def parse_rdf(_xml) do
-
+  def parse_rdf(xml) do
+    xml |>
+    xpath(
+    ~x"//rdf:RDF",
+    title: ~x"./channel/title/text()"s,
+    link: ~x"./channel/link/text()"s,
+    description: ~x"./channel/description/text()"s,
+    items: [
+      ~x"./item"l,
+      title: ~x"./title/text()"s,
+      source: ~x"./dc:source/text()"s,
+      link: ~x"./link/text()"s,
+      description: ~x"./description/text()"s,
+      date: ~x"./dc:date/text()"s
+      ]
+    )
   end
 
   #returns {:ok, feed} on success

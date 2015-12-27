@@ -38,28 +38,58 @@ defmodule ExFeedTest do
       description: "xkcd.com: A webcomic of romance and math humor.",
       items: [
         %ExFeed.FeedItem{
-        title: "Fixion",
-        home: "http://xkcd.com/1621/",
-        description: "some description",
-        date: "Fri, 25 Dec 2015 05:00:00 -0000",
-        link: "http://xkcd.com/1621/"
+          title: "Fixion",
+          source: "http://xkcd.com/1621/",
+          description: "some description",
+          date: "Fri, 25 Dec 2015 05:00:00 -0000",
+          link: "http://xkcd.com/1621/"
         },
         %ExFeed.FeedItem{
           title: "Christmas Settings",
-          home: "http://xkcd.com/1620/",
+          source: "http://xkcd.com/1620/",
           description: "some description",
           date: "Wed, 23 Dec 2015 05:00:00 -0000",
           link: "http://xkcd.com/1620/"
         }
       ]
-}
-      assert {:ok, model_feed} == feed
+    }
+    assert {:ok, model_feed} == feed
   end
-  # test "parse with rdf" do
-  #   feed = RssFileHelpers.read_file(:rdf)
-  #   parsed_feed = Rss.parse(:rdf, feed)
-  #   assert match?({:ok, _}, parsed_feed)
-  # end
+
+  test "parse with rdf" do
+    atom = :rdf
+    xml = read_file(atom)
+    feed = parse(atom, xml)
+    assert match?({:ok, %ExFeed.Feed{}}, feed)
+  end
+
+  test "parse with rdf result" do
+    atom = :rdf
+    xml = read_file(atom)
+    feed = parse(atom, xml)
+    model_feed = %ExFeed.Feed{
+      title: "The Oatmeal - Comics, Quizzes, Stories",
+      link: "http://theoatmeal.com/",
+      description: "The oatmeal tastes better than stale skittles found under the couch cushions",
+      items: [
+        %ExFeed.FeedItem{
+        title: "Autocorrect hates you",
+        source: "http://theoatmeal.com",
+        description: "some description",
+        date: "2015-12-15T20:02:00+01:00",
+        link: "http://theoatmeal.com/comics/autocorrect"
+        },
+        %ExFeed.FeedItem{
+          title: "Are you having a bad day?",
+          source: "http://theoatmeal.com",
+          description: "some description",
+          date: "2015-12-09T19:49:49+01:00",
+          link: "http://theoatmeal.com/blog/where_matt"
+        }
+      ]
+    }
+    assert {:ok, model_feed} == feed
+  end
   #
   # test "parse with atom" do
   #   feed = RssFileHelpers.read_file(:atom)
