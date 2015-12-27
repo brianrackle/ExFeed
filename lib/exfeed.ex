@@ -10,12 +10,12 @@ defmodule ExFeed do
   # doc |> xpath(~x"//game/matchups/matchup"l) |> Enum.map fn(node) -> %{ matchup: node |> xpath(~x"./name/text()")} end
   import SweetXml
 
-  defmodule Feed do
-    defstruct title: nil, link: nil, description: nil
-  end
-#guid is link in rss, link is source
   defmodule FeedItem do
-    defstruct title: nil, link: nil, source: nil, description: nil, date: nil
+    defstruct title: nil, home: nil, link: nil, description: nil, date: nil
+  end
+
+  defmodule Feed do
+    defstruct title: nil, link: nil, description: nil, items: []
   end
 
   def parse(format, xml) do
@@ -45,17 +45,27 @@ defmodule ExFeed do
   end
 
   defp parse_rss(xml) do
-    {:ok, struct(Stream, parse_rss_stream(xml))}
+    feed = parse_rss_stream(xml)
+    items = for item <- feed.items, do: struct(FeedItem, item)
+    {:ok, %{struct(Feed, feed) | items: items}}
   end
 
   defp parse_rss_stream(xml) do
-    # parse title defstruct title: nil, link: nil, description: nil
     xml |>
     xpath(
     ~x"//rss/channel",
-    title: ~x"./title/text()",
-    link: ~x"./link/text()",
-    desciption: ~x"./description/text()")
+    title: ~x"./title/text()"s,
+    link: ~x"./link/text()"s,
+    description: ~x"./description/text()"s,
+    items: [
+      ~x"./item"l,
+      title: ~x"./title/text()"s,
+      home: ~x"./link/text()"s,
+      link: ~x"./guid/text()"s,
+      description: ~x"./description/text()"s,
+      date: ~x"./pubDate/text()"s
+      ]
+    )
   end
 
   #returns {:ok, feed} on success
@@ -67,6 +77,5 @@ defmodule ExFeed do
   def parse_atom(_xml) do
 
   end
-
 
 end

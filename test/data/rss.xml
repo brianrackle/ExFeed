@@ -8,30 +8,16 @@
     <item>
       <title>Fixion</title>
       <link>http://xkcd.com/1621/</link>
-      <description>&lt;img src="http://imgs.xkcd.com/comics/fixion.png" title="My theory predicts that, at high enough energies, FRBs and perytons become indistinguishable because the detector burns out." alt="My theory predicts that, at high enough energies, FRBs and perytons become indistinguishable because the detector burns out." /&gt;</description>
+      <description>some description</description>
       <pubDate>Fri, 25 Dec 2015 05:00:00 -0000</pubDate>
       <guid>http://xkcd.com/1621/</guid>
     </item>
     <item>
       <title>Christmas Settings</title>
       <link>http://xkcd.com/1620/</link>
-      <description>&lt;img src="http://imgs.xkcd.com/comics/christmas_settings.png" title="SOUND DOGS MAKE: [BARKING] [HISSING] [LIGHTSABER NOISES] [FLUENT ENGLISH] [SWEARING]" alt="SOUND DOGS MAKE: [BARKING] [HISSING] [LIGHTSABER NOISES] [FLUENT ENGLISH] [SWEARING]" /&gt;</description>
+      <description>some description</description>
       <pubDate>Wed, 23 Dec 2015 05:00:00 -0000</pubDate>
       <guid>http://xkcd.com/1620/</guid>
-    </item>
-    <item>
-      <title>Watson Medical Algorithm</title>
-      <link>http://xkcd.com/1619/</link>
-      <description>&lt;img src="http://imgs.xkcd.com/comics/watson_medical_algorithm.png" title="Due to a minor glitch, 'discharge patient' does not cause the algorithm to exit, but instead leads back to 'hunt down and capture patient'." alt="Due to a minor glitch, 'discharge patient' does not cause the algorithm to exit, but instead leads back to 'hunt down and capture patient'." /&gt;</description>
-      <pubDate>Mon, 21 Dec 2015 05:00:00 -0000</pubDate>
-      <guid>http://xkcd.com/1619/</guid>
-    </item>
-    <item>
-      <title>Cold Medicine</title>
-      <link>http://xkcd.com/1618/</link>
-      <description>&lt;img src="http://imgs.xkcd.com/comics/cold_medicine.png" title="Seriously considering buying some illegal drugs to try to turn them back into cold medicine." alt="Seriously considering buying some illegal drugs to try to turn them back into cold medicine." /&gt;</description>
-      <pubDate>Fri, 18 Dec 2015 05:00:00 -0000</pubDate>
-      <guid>http://xkcd.com/1618/</guid>
     </item>
   </channel>
 </rss>
