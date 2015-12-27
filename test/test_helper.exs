@@ -1,6 +1,6 @@
 ExUnit.start()
 
-defmodule RssFileHelpers do
+defmodule ExFeedTestFileHelpers do
 
   def read_file(atom) do
     case atom do
