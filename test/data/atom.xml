@@ -1,49 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?><feed
-  xmlns="http://www.w3.org/2005/Atom"
-  xmlns:thr="http://purl.org/syndication/thread/1.0"
-  xml:lang="en-US"
-  xml:base="http://radar.oreilly.com/wp-atom.php"
-   >
-	<title type="text">O&#039;Reilly Radar</title>
-	<subtitle type="text">Insight, analysis, and research about emerging technologies</subtitle>
-
-	<updated>2015-12-25T12:50:43Z</updated>
-
-	<link rel="alternate" type="text/html" href="http://radar.oreilly.com" />
-	<id>http://radar.oreilly.com/feed/atom</id>
-	<link rel="self" type="application/atom+xml" href="http://radar.oreilly.com/feed/atom" />
-
-	<generator uri="https://wordpress.org/" version="4.4">WordPress</generator>
-	<entry>
-		<author>
-			<name>Nat Torkington</name>
-						<uri>http://radar.oreilly.com/nat/</uri>
-					</author>
-		<title type="html"><![CDATA[Four short links: 25 December 2015]]></title>
-		<link rel="alternate" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html" />
-		<id>http://radar.oreilly.com/?p=81475</id>
-		<updated>2015-12-25T12:50:43Z</updated>
-		<published>2015-12-25T11:00:02Z</published>
-		<category scheme="http://radar.oreilly.com" term="Four Short Links" /><category scheme="http://radar.oreilly.com" term="@fourshort" /><category scheme="http://radar.oreilly.com" term="@home" /><category scheme="http://radar.oreilly.com" term="data" /><category scheme="http://radar.oreilly.com" term="drones" /><category scheme="http://radar.oreilly.com" term="economics" /><category scheme="http://radar.oreilly.com" term="graph" /><category scheme="http://radar.oreilly.com" term="money" /><category scheme="http://radar.oreilly.com" term="numbers" /><category scheme="http://radar.oreilly.com" term="startups" />		<summary type="html"><![CDATA[Bad Data Guide (Quartz) &#8212; An exhaustive reference to problems seen in real-world data along with suggestions on how to resolve them. Breakout List &#8212; companies where all the action is happening. Read alongside Startup L Jackson&#8217;s &#8220;How to Get &#8230; ]]></summary>
-		<content type="html" xml:base="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html">content</content>
-			<link rel="replies" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html#comments" thr:count="0"/>
-		<link rel="replies" type="application/atom+xml" href="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html/feed/atom" thr:count="0"/>
-		<thr:total>0</thr:total>
-		</entry>
-		<entry>
-		<author>
-			<name>Nat Torkington</name>
-						<uri>http://radar.oreilly.com/nat/</uri>
-					</author>
-		<title type="html"><![CDATA[Four short links: 24 December 2015]]></title>
-		<link rel="alternate" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html" />
-		<id>http://radar.oreilly.com/?p=81470</id>
-		<updated>2015-12-25T12:45:54Z</updated>
-		<published>2015-12-24T11:00:00Z</published>
-		<category scheme="http://radar.oreilly.com" term="Four Short Links" /><category scheme="http://radar.oreilly.com" term="@fourshort" /><category scheme="http://radar.oreilly.com" term="ai" /><category scheme="http://radar.oreilly.com" term="devops" /><category scheme="http://radar.oreilly.com" term="education" /><category scheme="http://radar.oreilly.com" term="programming" /><category scheme="http://radar.oreilly.com" term="self-driving cars" /><category scheme="http://radar.oreilly.com" term="transportation" /><category scheme="http://radar.oreilly.com" term="visualizations" /><category scheme="http://radar.oreilly.com" term="viz" />		<summary type="html"><![CDATA[Folium &#8212; makes it easy to visualize data that&#8217;s been manipulated in Python on an interactive Leaflet map. It enables both the binding of data to a map for choropleth visualizations as well as passing Vincent/Vega visualizations as markers on &#8230; ]]></summary>
-		<content type="html" xml:base="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html">content</content>
-			<link rel="replies" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html#comments" thr:count="0"/>
-		<link rel="replies" type="application/atom+xml" href="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html/feed/atom" thr:count="0"/>
-		<thr:total>0</thr:total>
-		</entry>
-	</feed>
+<?xml version="1.0" encoding="UTF-8"?>
+<feed  xmlns="http://www.w3.org/2005/Atom"  xmlns:thr="http://purl.org/syndication/thread/1.0"  xml:lang="en-US"  xml:base="http://radar.oreilly.com/wp-atom.php"   >
+  <title type="text">O&#039;Reilly Radar</title>
+  <subtitle type="text">Insight, analysis, and research about emerging technologies</subtitle>
+  <updated>2015-12-25T12:50:43Z</updated>
+  <link rel="alternate" type="text/html" href="http://radar.oreilly.com" />
+  <id>http://radar.oreilly.com/feed/atom</id>
+  <link rel="self" type="application/atom+xml" href="http://radar.oreilly.com/feed/atom" />
+  <generator uri="https://wordpress.org/" version="4.4">WordPress</generator>
+  <entry>
+    <author>
+      <name>Nat Torkington</name>
+      <uri>http://radar.oreilly.com/nat/</uri>
+    </author>
+    <title type="html"><![CDATA[Four short links: 25 December 2015]]></title>
+    <link rel="alternate" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html" />
+    <id>http://radar.oreilly.com/?p=81475</id>
+    <updated>2015-12-25T12:50:43Z</updated>
+    <published>2015-12-25T11:00:02Z</published>
+    <category scheme="http://radar.oreilly.com" term="Four Short Links" />
+    <category scheme="http://radar.oreilly.com" term="@fourshort" />
+    <category scheme="http://radar.oreilly.com" term="@home" />
+    <category scheme="http://radar.oreilly.com" term="data" />
+    <category scheme="http://radar.oreilly.com" term="drones" />
+    <category scheme="http://radar.oreilly.com" term="economics" />
+    <category scheme="http://radar.oreilly.com" term="graph" />
+    <category scheme="http://radar.oreilly.com" term="money" />
+    <category scheme="http://radar.oreilly.com" term="numbers" />
+    <category scheme="http://radar.oreilly.com" term="startups" />
+    <summary type="html"><![CDATA[Bad Data Guide (Quartz) &#8212; An exhaustive reference to problems seen in real-world data along with suggestions on how to resolve them. Breakout List &#8212; companies where all the action is happening. Read alongside Startup L Jackson&#8217;s &#8220;How to Get &#8230; ]]></summary>
+    <content type="html" xml:base="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html">content</content>
+    <link rel="replies" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html#comments" thr:count="0"/>
+    <link rel="replies" type="application/atom+xml" href="http://radar.oreilly.com/2015/12/four-short-links-25-december-2015-2.html/feed/atom" thr:count="0"/>
+    <thr:total>0</thr:total>
+  </entry>
+  <entry>
+    <author>
+      <name>Nat Torkington</name>
+      <uri>http://radar.oreilly.com/nat/</uri>
+    </author>
+    <title type="html"><![CDATA[Four short links: 24 December 2015]]></title>
+    <link rel="alternate" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html" />
+    <id>http://radar.oreilly.com/?p=81470</id>
+    <updated>2015-12-25T12:45:54Z</updated>
+    <published>2015-12-24T11:00:00Z</published>
+    <category scheme="http://radar.oreilly.com" term="Four Short Links" />
+    <category scheme="http://radar.oreilly.com" term="@fourshort" />
+    <category scheme="http://radar.oreilly.com" term="ai" />
+    <category scheme="http://radar.oreilly.com" term="devops" />
+    <category scheme="http://radar.oreilly.com" term="education" />
+    <category scheme="http://radar.oreilly.com" term="programming" />
+    <category scheme="http://radar.oreilly.com" term="self-driving cars" />
+    <category scheme="http://radar.oreilly.com" term="transportation" />
+    <category scheme="http://radar.oreilly.com" term="visualizations" />
+    <category scheme="http://radar.oreilly.com" term="viz" />
+    <summary type="html"><![CDATA[Folium &#8212; makes it easy to visualize data that&#8217;s been manipulated in Python on an interactive Leaflet map. It enables both the binding of data to a map for choropleth visualizations as well as passing Vincent/Vega visualizations as markers on &#8230; ]]></summary>
+    <content type="html" xml:base="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html">content</content>
+    <link rel="replies" type="text/html" href="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html#comments" thr:count="0"/>
+    <link rel="replies" type="application/atom+xml" href="http://radar.oreilly.com/2015/12/four-short-links-24-december-2015.html/feed/atom" thr:count="0"/>
+    <thr:total>0</thr:total>
+  </entry>
+</feed>

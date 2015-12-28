@@ -1,5 +1,6 @@
 defmodule ExFeed do
-  import SweetXml
+  import SweetXml, only: [xpath: 2, xpath: 3, sigil_x: 2]
+  import HTTPoison, only: [get: 1]
 
   defmodule FeedItem do
     defstruct title: nil, source: nil, link: nil, description: nil, date: nil
@@ -15,11 +16,11 @@ defmodule ExFeed do
   # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
 
   def get_feed(url) do
-    case HTTPoison.get(url) do
+    case get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body |> feed_type |> parse_feed(body)
-      {:ok, _} -> nil
-      {:error, _} -> nil
+      {:ok, _} -> {:error, nil}
+      {:error, _} -> {:error, nil}
     end
   end
 
