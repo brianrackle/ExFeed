@@ -9,7 +9,21 @@ defmodule ExFeed do
     defstruct title: nil, link: nil, description: nil, items: []
   end
 
-  def parse(format, xml) do
+  # usage:
+  # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
+  # feed.title
+  # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
+
+  def get_feed(url) do
+    case HTTPoison.get(url) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        body |> feed_type |> parse_feed(body)
+      {:ok, _} -> nil
+      {:error, _} -> nil
+    end
+  end
+
+  def parse_feed(format, xml) do
     case format do
       :rss -> xml |> parse_rss |> to_feed
       :rdf -> xml |> parse_rdf |> to_feed
@@ -22,8 +36,8 @@ defmodule ExFeed do
     cond do
       path?(xml, ~x"//rss"o) -> :rss
       path?(xml, ~x"//rdf:RDF"o) -> :rdf
-      path?(xml, ~x"//atom"o) -> :atom
-      true -> nil
+      path?(xml, ~x"//feed"o) -> :atom
+      true -> :undefined
     end
   end
 
@@ -59,7 +73,7 @@ defmodule ExFeed do
   end
 
   #returns {:ok, feed} on success
-  def parse_rdf(xml) do
+  defp parse_rdf(xml) do
     xml |>
     xpath(
     ~x"//rdf:RDF",
@@ -78,7 +92,7 @@ defmodule ExFeed do
   end
 
   #returns {:ok, feed} on success
-  def parse_atom(xml) do
+  defp parse_atom(xml) do
     xml |>
     xpath(
     ~x"//feed",
@@ -90,8 +104,8 @@ defmodule ExFeed do
       title: ~x"./title/text()"s,
       # source: ~x"./dc:source/text()"s,
       link: ~x"./id/text()"s,
-      description: ~x"./content/text()"s,
-      date: ~x"./published/text()"s
+      description: ~x"./summary/text()"s,
+      date: ~x"./updated/text()"s
       ]
     )
   end

@@ -24,14 +24,14 @@ defmodule ExFeedTest do
   test "parse with rss" do
     atom = :rss
     xml = read_file(atom)
-    feed = parse(atom, xml)
+    feed = parse_feed(atom, xml)
     assert match?({:ok, %ExFeed.Feed{}}, feed)
   end
 
   test "parse with rss result" do
     atom = :rss
     xml = read_file(atom)
-    feed = parse(atom, xml)
+    feed = parse_feed(atom, xml)
     model_feed = %ExFeed.Feed{
       title: "xkcd.com",
       link: "http://xkcd.com/",
@@ -59,14 +59,14 @@ defmodule ExFeedTest do
   test "parse with rdf" do
     atom = :rdf
     xml = read_file(atom)
-    feed = parse(atom, xml)
+    feed = parse_feed(atom, xml)
     assert match?({:ok, %ExFeed.Feed{}}, feed)
   end
 
   test "parse with rdf result" do
     atom = :rdf
     xml = read_file(atom)
-    feed = parse(atom, xml)
+    feed = parse_feed(atom, xml)
     model_feed = %ExFeed.Feed{
       title: "The Oatmeal - Comics, Quizzes, Stories",
       link: "http://theoatmeal.com/",
