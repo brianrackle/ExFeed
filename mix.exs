@@ -14,7 +14,7 @@ defmodule Rss.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :sweet_xml]]
+    [applications: [:logger, :sweet_xml, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -28,7 +28,8 @@ defmodule Rss.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:sweet_xml, git: "https://github.com/awetzel/sweet_xml.git", tag: "0.3.0"}
+      {:sweet_xml, "~> 0.5.0"},
+      {:httpoison, "~> 0.8.0"}
     ]
   end
 end

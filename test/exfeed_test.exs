@@ -90,7 +90,8 @@ defmodule ExFeedTest do
     }
     assert {:ok, model_feed} == feed
   end
-  #
+
+  #atom identified with feed tag
   # test "parse with atom" do
   #   feed = RssFileHelpers.read_file(:atom)
   #   parsed_feed = Rss.parse(:atom, feed)

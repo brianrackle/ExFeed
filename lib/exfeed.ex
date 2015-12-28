@@ -1,13 +1,4 @@
 defmodule ExFeed do
-  # if <?xml version="1.0" encoding="UTF-8"?>
-  # <rss version="2.0"
-  #see buzzfeed.xml and xkcd.xml
-
-  # if <rdf:RDF
-  # see oatmeal.xml
-
-
-  # doc |> xpath(~x"//game/matchups/matchup"l) |> Enum.map fn(node) -> %{ matchup: node |> xpath(~x"./name/text()")} end
   import SweetXml
 
   defmodule FeedItem do
@@ -87,8 +78,22 @@ defmodule ExFeed do
   end
 
   #returns {:ok, feed} on success
-  def parse_atom(_xml) do
-
+  def parse_atom(xml) do
+    xml |>
+    xpath(
+    ~x"//feed",
+    title: ~x"./title/text()"s,
+    link: ~x"./id/text()"s,
+    description: ~x"./subtitle/text()"s,
+    items: [
+      ~x"./entry"l,
+      title: ~x"./title/text()"s,
+      # source: ~x"./dc:source/text()"s,
+      link: ~x"./id/text()"s,
+      description: ~x"./content/text()"s,
+      date: ~x"./published/text()"s
+      ]
+    )
   end
 
 end
