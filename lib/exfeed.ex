@@ -15,31 +15,30 @@ defmodule ExFeed do
   # feed.title
   # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
 
-  def get_feed(url) do
+  def get_doc(url) do
     case get(url) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body |> feed_type |> parse_feed(body)
-      {:ok, _} -> {:error, nil}
-      {:error, _} -> {:error, nil}
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} -> body
     end
   end
 
-  #add a get without a parse...
+  def parse_feed(doc) do
+    doc |> feed_type |> parse_feed(doc)
+  end
 
-  def parse_feed(format, xml) do
+  def parse_feed(format, doc) do
     case format do
-      :rss -> xml |> parse_rss |> to_feed
-      :rdf -> xml |> parse_rdf |> to_feed
-      :atom -> xml |> parse_atom |> to_feed
-      _ -> {:error, nil}
+      :rss -> doc |> parse_rss |> to_feed
+      :rdf -> doc |> parse_rdf |> to_feed
+      :atom -> doc |> parse_atom |> to_feed
+      _ -> nil
     end
   end
 
-  def feed_type(xml) do
+  def feed_type(doc) do
     cond do
-      path?(xml, ~x"//rss"o) -> :rss
-      path?(xml, ~x"//rdf:RDF"o) -> :rdf
-      path?(xml, ~x"//feed"o) -> :atom
+      path?(doc, ~x"//rss"o) -> :rss
+      path?(doc, ~x"//rdf:RDF"o) -> :rdf
+      path?(doc, ~x"//feed"o) -> :atom
       true -> :undefined
     end
   end
@@ -54,7 +53,7 @@ defmodule ExFeed do
 
   defp to_feed(feed) do
     items = for item <- feed.items, do: struct(FeedItem, item)
-    {:ok, %{struct(Feed, feed) | items: items}}
+    %{struct(Feed, feed) | items: items}
   end
 
   defp parse_rss(xml) do
