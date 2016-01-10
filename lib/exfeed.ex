@@ -15,31 +15,29 @@ defmodule ExFeed do
   # feed.title
   # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
 
-  def get_doc(url) do
+  def get_doc(url) when is_binary(url) do
     case get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} -> body
     end
   end
 
-  def parse_feed(doc) do
+  def parse_feed(doc) when is_binary(doc) do
     doc |> feed_type |> parse_feed(doc)
   end
 
-  def parse_feed(format, doc) do
+  def parse_feed(format, doc) when is_atom(format) and is_binary(doc) do
     case format do
       :rss -> doc |> parse_rss |> to_feed
       :rdf -> doc |> parse_rdf |> to_feed
       :atom -> doc |> parse_atom |> to_feed
-      _ -> nil
     end
   end
 
-  def feed_type(doc) do
+  def feed_type(doc) when is_binary(doc) do
     cond do
       path?(doc, ~x"//rss"o) -> :rss
       path?(doc, ~x"//rdf:RDF"o) -> :rdf
       path?(doc, ~x"//feed"o) -> :atom
-      true -> :undefined
     end
   end
 

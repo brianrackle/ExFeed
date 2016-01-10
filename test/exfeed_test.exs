@@ -1,13 +1,9 @@
-defmodule ExFeedTest do
+defmodule ExFeed.Test do
   use ExUnit.Case
   doctest ExFeed
 
   import ExFeed
   import ExFeedTestFileHelpers
-
-  test "the truth" do
-    assert 1 + 1 == 2
-  end
 
   test "feed type rss" do
     atom = :rss
@@ -25,7 +21,7 @@ defmodule ExFeedTest do
     atom = :rss
     xml = read_file(atom)
     feed = parse_feed(atom, xml)
-    assert match?({:ok, %ExFeed.Feed{}}, feed)
+    assert match?(%ExFeed.Feed{}, feed)
   end
 
   test "parse with rss result" do
@@ -53,14 +49,14 @@ defmodule ExFeedTest do
         }
       ]
     }
-    assert {:ok, model_feed} == feed
+    assert model_feed == feed
   end
 
   test "parse with rdf" do
     atom = :rdf
     xml = read_file(atom)
     feed = parse_feed(atom, xml)
-    assert match?({:ok, %ExFeed.Feed{}}, feed)
+    assert match?(%ExFeed.Feed{}, feed)
   end
 
   test "parse with rdf result" do
@@ -88,7 +84,7 @@ defmodule ExFeedTest do
         }
       ]
     }
-    assert {:ok, model_feed} == feed
+    assert model_feed == feed
   end
 
   #atom identified with feed tag
