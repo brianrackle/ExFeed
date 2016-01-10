@@ -1,8 +1,8 @@
-defmodule Rss.Mixfile do
+defmodule ExFeed.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :rss,
+    [app: :exfeed,
      version: "0.0.1",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
@@ -14,7 +14,8 @@ defmodule Rss.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :sweet_xml, :httpoison]]
+    [applications: [:logger, :sweet_xml, :httpoison],
+    mod: {ExFeed.Application, []}]
   end
 
   # Dependencies can be Hex packages:
