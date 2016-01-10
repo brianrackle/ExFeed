@@ -7,7 +7,7 @@ defmodule ExFeed.Application do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(ExFeed.Server, [[]])
+      worker(ExFeed.Server, [nil])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -15,4 +15,5 @@ defmodule ExFeed.Application do
     opts = [strategy: :one_for_one, name: ExFeed.Application.Supervisor]
     Supervisor.start_link(children, opts)
   end
+
 end

@@ -24,6 +24,8 @@ defmodule ExFeed do
     end
   end
 
+  #add a get without a parse...
+
   def parse_feed(format, xml) do
     case format do
       :rss -> xml |> parse_rss |> to_feed
