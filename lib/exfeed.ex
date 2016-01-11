@@ -10,6 +10,21 @@ defmodule ExFeed do
     defstruct title: nil, link: nil, description: nil, items: []
   end
 
+  defmodule StoredContent do
+    defstruct timestamp: {0,0,0}, content: nil
+  end
+
+  # eventually want the ability to append to FeedItems as well.
+  # returns date and content
+  def find(map, url) do
+    Map.get(map, url)
+  end
+
+  # stores url as key and datetime + content as body
+  def store(map, url, content) do
+    Map.put_new(map, url, %StoredContent{timestamp: :erlang.timestamp, content: content})
+  end
+
   # usage:
   # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
   # feed.title
