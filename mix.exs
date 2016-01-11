@@ -14,8 +14,11 @@ defmodule ExFeed.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :sweet_xml, :httpoison],
-    mod: {ExFeed.Application, nil}]
+    [
+      applications: [:logger, :sweet_xml, :httpoison],
+      mod: {ExFeed.Application, nil},
+      registered: [ExFeed.Server]
+    ]
   end
 
   # Dependencies can be Hex packages:

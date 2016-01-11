@@ -1,6 +1,13 @@
 defmodule ExFeed.Server do
   use GenServer
 
+  # keep a map of last updated
+  # serialize on terminate :erlang.term_to_binary
+  # deserialize on init :erlange.binary_to_term
+  # init with data store location. If no file then create file with
+  # File.write( file_name, :erlang.term_to_binary(%{}))
+  # File.read!( file_name ) |> :erlang.binary_to_term
+
   # public interface
   def start_link(state) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)

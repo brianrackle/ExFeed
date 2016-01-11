@@ -14,11 +14,17 @@ defmodule ExFeed do
   # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
   # feed.title
   # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
+  def read(path) when is_binary(path) do
+    with {:ok, body} <- File.read(path), do: :erlang.binary_to_term(body)
+  end
+
+  def write(path, map) when is_binary(path) and is_map(map) do
+    File.write(path, :erlang.term_to_binary(map))
+  end
 
   def get_doc(url) when is_binary(url) do
-    case get(url) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} -> body
-    end
+    with {:ok, %HTTPoison.Response{status_code: 200, body: body}} <- get(url),
+     do: body
   end
 
   def parse_feed(doc) when is_binary(doc) do
