@@ -14,15 +14,16 @@ defmodule ExFeed do
     defstruct timestamp: {0,0,0}, content: nil
   end
 
+  # app start -> sets the cache folder -> ExFeed.read cache folder -> app exit -> ExFeed.write
+  # stores url as key and datetime + content as body
+  def store(map, url, content) do
+    Map.put_new(map, url, %StoredContent{timestamp: :erlang.timestamp, content: content})
+  end
+
   # eventually want the ability to append to FeedItems as well.
   # returns date and content
   def find(map, url) do
     Map.get(map, url)
-  end
-
-  # stores url as key and datetime + content as body
-  def store(map, url, content) do
-    Map.put_new(map, url, %StoredContent{timestamp: :erlang.timestamp, content: content})
   end
 
   # usage:

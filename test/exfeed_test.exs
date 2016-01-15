@@ -87,6 +87,23 @@ defmodule ExFeed.Test do
     assert model_feed == feed
   end
 
+  test "store rss content" do
+    assert Enum.count(create_content_map()) == Enum.count(feed_formats())
+  end
+
+  test "find rss content" do
+    content_map = create_content_map()
+    feed_formats() |> Enum.each(&(assert find(content_map, Atom.to_string(&1))))
+  end
+
+  test "write rss map" do
+
+  end
+
+  test "read rss map" do
+
+  end
+
   #atom identified with feed tag
   # test "parse with atom" do
   #   feed = RssFileHelpers.read_file(:atom)
