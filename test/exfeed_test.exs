@@ -96,12 +96,15 @@ defmodule ExFeed.Test do
     feed_formats() |> Enum.each(&(assert find(content_map, Atom.to_string(&1))))
   end
 
+  # should use test setups to initialize test files
   test "write rss map" do
-
+    assert create_content_map() |> write("content_map.bin") == :ok
   end
 
   test "read rss map" do
-
+    for content <-  read("content_map.bin") |> Enum.unzip |> elem(1) do
+      assert match?(%ExFeed.StoredContent{}, content)
+    end
   end
 
   #atom identified with feed tag

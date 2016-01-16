@@ -16,14 +16,15 @@ defmodule ExFeedTestFileHelpers do
   end
 
   def content_list() do
-    for format <- feed_formats(), do: read_file(format)
+    for format <- feed_formats(), do: "#{format} test" # read_file(format)
   end
 
   def create_content_map() do
     reducer = fn(x, acc) ->
       ExFeed.store(acc, Atom.to_string(elem(x, 0)), elem(x, 1) ) end
 
-    rss_map_count = Enum.zip(feed_formats(), content_list()) |>
+    Enum.zip(feed_formats(), content_list()) |>
     Enum.reduce(%{}, reducer)
+
   end
 end

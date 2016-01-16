@@ -26,18 +26,17 @@ defmodule ExFeed do
     Map.get(map, url)
   end
 
-  # usage:
-  # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
-  # feed.title
-  # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
   def read(path) when is_binary(path) do
     with {:ok, body} <- File.read(path), do: :erlang.binary_to_term(body)
   end
 
-  def write(path, map) when is_binary(path) and is_map(map) do
+  def write(map, path) when is_map(map) and is_binary(path) do
     File.write(path, :erlang.term_to_binary(map))
   end
 
+  # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
+  # feed.title
+  # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
   def get_doc(url) when is_binary(url) do
     with {:ok, %HTTPoison.Response{status_code: 200, body: body}} <- get(url),
      do: body
