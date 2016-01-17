@@ -11,7 +11,20 @@ defmodule ExFeedTestFileHelpers do
       :rss -> File.read!("test/data/rss.xml")
       :rdf -> File.read!("test/data/rdf.xml")
       :atom -> File.read!("test/data/atom.xml")
-      _ -> nil
+    end
+  end
+
+  def get_feed_index(format) do
+    case format do
+      :rss -> %ExFeedLoader.FeedIndex{id: "xkcd_rss",
+        url: "http://xkcd.com/rss.xml",
+        description: "A webcomic of romance and math humor."}
+      :rdf -> %ExFeedLoader.FeedIndex{id: "the_oatmeal",
+        url: "http://theoatmeal.com/feed/rss",
+        description: "description"}
+      :atom -> %ExFeedLoader.FeedIndex{id: "xkcd_atom",
+        url: "http://xkcd.com/atom.xml",
+        description: "A webcomic of romance and math humor."}
     end
   end
 
@@ -25,6 +38,6 @@ defmodule ExFeedTestFileHelpers do
 
     Enum.zip(feed_formats(), content_list()) |>
     Enum.reduce(%{}, reducer)
-
   end
+
 end

@@ -9,17 +9,18 @@ defmodule ExFeedLoader do
   end
 
   def add_feed(list, id, url, description) do
-    with nil <- Enum.find(list, &(&1.id == id)) do
-      [%FeedIndex{id: id, url: url, description: description} | list]
+    case Enum.find(list, &(&1.id == id)) do
+      nil -> [%FeedIndex{id: id, url: url, description: description} | list]
+      %FeedIndex{} -> list
     end
   end
 
-  def remove_feed(_map, _id) do
-
+  def remove_feed(list, id) do
+    Enum.filter(list, &(&1.id != id))
   end
 
-  def get_feed(_map, _id) do
-
+  def get_feed(list, id) do
+    Enum.find(list, &(&1.id == id))
   end
 
   # app start -> sets the cache folder -> ExFeed.read cache folder -> app exit -> ExFeed.write

@@ -109,6 +109,39 @@ defmodule ExFeed.Test do
     end
   end
 
+  test "add feed prevent duplicates" do
+    test_id = "xkcd_rss"
+    test_url = "test"
+    test_description = "description"
+
+    result =
+      for format <- feed_formats() do get_feed_index(format) end |>
+      add_feed(test_id, test_url, test_description) |>
+      Enum.find(&(&1.id == test_id))
+
+    assert result.url == get_feed_index(:rss).url
+  end
+
+  test "remove feed" do
+    test_id = "xkcd_rss"
+
+    result =
+      for format <- feed_formats() do get_feed_index(format) end |>
+      remove_feed(test_id)
+
+    assert Enum.count(result) == Enum.count(feed_formats()) - 1
+  end
+
+  test "get feed" do
+    test_id = "xkcd_rss"
+
+    result =
+      for format <- feed_formats() do get_feed_index(format) end |>
+      get_feed(test_id)
+
+    assert result.id == test_id
+  end
+
   #atom identified with feed tag
   # test "parse with atom" do
   #   feed = RssFileHelpers.read_file(:atom)
