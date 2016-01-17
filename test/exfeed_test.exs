@@ -3,6 +3,8 @@ defmodule ExFeed.Test do
   doctest ExFeed
 
   import ExFeed
+  import ExFeedLoader
+
   import ExFeedTestFileHelpers
 
   test "feed type rss" do
@@ -103,7 +105,7 @@ defmodule ExFeed.Test do
 
   test "read rss map" do
     for content <-  read("content_map.bin") |> Enum.unzip |> elem(1) do
-      assert match?(%ExFeed.StoredContent{}, content)
+      assert match?(%ExFeedLoader.StoredContent{}, content)
     end
   end
 

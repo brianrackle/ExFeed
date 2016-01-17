@@ -21,7 +21,7 @@ defmodule ExFeedTestFileHelpers do
 
   def create_content_map() do
     reducer = fn(x, acc) ->
-      ExFeed.store(acc, Atom.to_string(elem(x, 0)), elem(x, 1) ) end
+      ExFeedLoader.store(acc, Atom.to_string(elem(x, 0)), elem(x, 1) ) end
 
     Enum.zip(feed_formats(), content_list()) |>
     Enum.reduce(%{}, reducer)

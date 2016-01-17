@@ -10,36 +10,11 @@ defmodule ExFeed do
     defstruct title: nil, link: nil, description: nil, items: []
   end
 
-  defmodule StoredContent do
-    defstruct timestamp: {0,0,0}, content: nil
-  end
-
-  # app start -> sets the cache folder -> ExFeed.read cache folder -> app exit -> ExFeed.write
-  # stores url as key and datetime + content as body
-  def store(map, url, content) do
-    Map.put_new(map, url, %StoredContent{timestamp: :erlang.timestamp, content: content})
-  end
-
-  # eventually want the ability to append to FeedItems as well.
-  # returns date and content
-  def find(map, url) do
-    Map.get(map, url)
-  end
-
-  def read(path) when is_binary(path) do
-    with {:ok, body} <- File.read(path), do: :erlang.binary_to_term(body)
-  end
-
-  def write(map, path) when is_map(map) and is_binary(path) do
-    File.write(path, :erlang.term_to_binary(map))
-  end
-
   # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
   # feed.title
   # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
   def get_doc(url) when is_binary(url) do
-    with {:ok, %HTTPoison.Response{status_code: 200, body: body}} <- get(url),
-     do: body
+    with {:ok, %HTTPoison.Response{status_code: 200, body: body}} <- get(url), do: body
   end
 
   def parse_feed(doc) when is_binary(doc) do
