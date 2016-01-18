@@ -23,14 +23,12 @@ defmodule ExFeedTestFileHelpers do
         items: [
             %ExFeed.FeedItem{
               title: "Fixion",
-              source: "http://xkcd.com/1621/",
               description: "some description",
               date: "Fri, 25 Dec 2015 05:00:00 -0000",
               link: "http://xkcd.com/1621/"
             },
             %ExFeed.FeedItem{
               title: "Christmas Settings",
-              source: "http://xkcd.com/1620/",
               description: "some description",
               date: "Wed, 23 Dec 2015 05:00:00 -0000",
               link: "http://xkcd.com/1620/"
@@ -44,14 +42,12 @@ defmodule ExFeedTestFileHelpers do
         items: [
             %ExFeed.FeedItem{
             title: "Autocorrect hates you",
-            source: "http://theoatmeal.com",
             description: "some description",
             date: "2015-12-15T20:02:00+01:00",
             link: "http://theoatmeal.com/comics/autocorrect"
             },
             %ExFeed.FeedItem{
               title: "Are you having a bad day?",
-              source: "http://theoatmeal.com",
               description: "some description",
               date: "2015-12-09T19:49:49+01:00",
               link: "http://theoatmeal.com/blog/where_matt"
@@ -65,14 +61,12 @@ defmodule ExFeedTestFileHelpers do
         items: [
             %ExFeed.FeedItem{
             title: "Fixion",
-            source: nil,
             description: "description",
             date: "2015-12-25T00:00:00Z",
             link: "http://xkcd.com/1621/"
             },
             %ExFeed.FeedItem{
               title: "Christmas Settings",
-              source: nil,
               description: "description",
               date: "2015-12-23T00:00:00Z",
               link: "http://xkcd.com/1620/"

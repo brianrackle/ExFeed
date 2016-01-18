@@ -3,7 +3,7 @@ defmodule ExFeed do
   import HTTPoison, only: [get: 1]
 
   defmodule FeedItem do
-    defstruct title: nil, source: nil, link: nil, description: nil, date: nil
+    defstruct title: nil, link: nil, description: nil, date: nil
   end
 
   defmodule Feed do
@@ -22,11 +22,7 @@ defmodule ExFeed do
   end
 
   def parse_feed(format, doc) when is_atom(format) and is_binary(doc) do
-    case format do
-      :rss -> doc |> parse_rss |> to_feed
-      :rdf -> doc |> parse_rdf |> to_feed
-      :atom -> doc |> parse_atom |> to_feed
-    end
+    format |> parse(doc) |> to_feed
   end
 
   def feed_type(doc) when is_binary(doc) do
@@ -50,7 +46,7 @@ defmodule ExFeed do
     %{struct(Feed, feed) | items: items}
   end
 
-  defp parse_rss(xml) do
+  defp parse(format, xml) when format == :rss  do
     xml |>
     xpath(
     ~x"//rss/channel",
@@ -60,7 +56,6 @@ defmodule ExFeed do
     items: [
       ~x"./item"l,
       title: ~x"./title/text()"s,
-      source: ~x"./link/text()"s,
       link: ~x"./guid/text()"s,
       description: ~x"./description/text()"s,
       date: ~x"./pubDate/text()"s
@@ -69,7 +64,7 @@ defmodule ExFeed do
   end
 
   #returns {:ok, feed} on success
-  defp parse_rdf(xml) do
+  defp parse(format, xml) when format == :rdf do
     xml |>
     xpath(
     ~x"//rdf:RDF",
@@ -79,7 +74,6 @@ defmodule ExFeed do
     items: [
       ~x"./item"l,
       title: ~x"./title/text()"s,
-      source: ~x"./dc:source/text()"s,
       link: ~x"./link/text()"s,
       description: ~x"./description/text()"s,
       date: ~x"./dc:date/text()"s
@@ -88,7 +82,7 @@ defmodule ExFeed do
   end
 
   #returns {:ok, feed} on success
-  defp parse_atom(xml) do
+  defp parse(format, xml) when format == :atom do
     xml |>
     xpath(
     ~x"//feed",
@@ -98,7 +92,6 @@ defmodule ExFeed do
     items: [
       ~x"./entry"l,
       title: ~x"./title/text()"s,
-      # source: ~x"./dc:source/text()"s,
       link: ~x"./id/text()"s,
       description: ~x"./summary/text()"s,
       date: ~x"./updated/text()"s
