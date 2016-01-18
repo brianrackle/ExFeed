@@ -7,104 +7,50 @@ defmodule ExFeed.Test do
 
   import ExFeedTestFileHelpers
 
-  test "feed type rss" do
-    atom = :rss
-    feed = read_file(atom)
-    assert atom == feed_type(feed)
+  test "feed type identification" do
+    feed_formats() |>
+    Enum.map(&read_file/1) |>
+    Enum.zip(feed_formats()) |>
+    Enum.each(&(assert feed_type(elem(&1, 0)) == elem(&1, 1)))
   end
 
-  test "feed type rdf" do
-    atom = :rdf
-    feed = read_file(atom)
-    assert atom == feed_type(feed)
+  test "parsing all formats" do
+    feed_formats() |>
+    Enum.map(&read_file/1) |>
+    Enum.zip(feed_formats()) |>
+    Enum.each(fn (x) ->
+      assert match?(%ExFeed.Feed{}, parse_feed(elem(x, 0)))
+    end)
   end
 
-  test "parse with rss" do
-    atom = :rss
-    xml = read_file(atom)
-    feed = parse_feed(atom, xml)
-    assert match?(%ExFeed.Feed{}, feed)
-  end
-
-  test "parse with rss result" do
-    atom = :rss
-    xml = read_file(atom)
-    feed = parse_feed(atom, xml)
-    model_feed = %ExFeed.Feed{
-      title: "xkcd.com",
-      link: "http://xkcd.com/",
-      description: "xkcd.com: A webcomic of romance and math humor.",
-      items: [
-        %ExFeed.FeedItem{
-          title: "Fixion",
-          source: "http://xkcd.com/1621/",
-          description: "some description",
-          date: "Fri, 25 Dec 2015 05:00:00 -0000",
-          link: "http://xkcd.com/1621/"
-        },
-        %ExFeed.FeedItem{
-          title: "Christmas Settings",
-          source: "http://xkcd.com/1620/",
-          description: "some description",
-          date: "Wed, 23 Dec 2015 05:00:00 -0000",
-          link: "http://xkcd.com/1620/"
-        }
-      ]
-    }
-    assert model_feed == feed
-  end
-
-  test "parse with rdf" do
-    atom = :rdf
-    xml = read_file(atom)
-    feed = parse_feed(atom, xml)
-    assert match?(%ExFeed.Feed{}, feed)
-  end
-
-  test "parse with rdf result" do
-    atom = :rdf
-    xml = read_file(atom)
-    feed = parse_feed(atom, xml)
-    model_feed = %ExFeed.Feed{
-      title: "The Oatmeal - Comics, Quizzes, Stories",
-      link: "http://theoatmeal.com/",
-      description: "The oatmeal tastes better than stale skittles found under the couch cushions",
-      items: [
-        %ExFeed.FeedItem{
-        title: "Autocorrect hates you",
-        source: "http://theoatmeal.com",
-        description: "some description",
-        date: "2015-12-15T20:02:00+01:00",
-        link: "http://theoatmeal.com/comics/autocorrect"
-        },
-        %ExFeed.FeedItem{
-          title: "Are you having a bad day?",
-          source: "http://theoatmeal.com",
-          description: "some description",
-          date: "2015-12-09T19:49:49+01:00",
-          link: "http://theoatmeal.com/blog/where_matt"
-        }
-      ]
-    }
-    assert model_feed == feed
+  test "parse all formats confirm result" do
+    feed_formats() |>
+    Enum.map(&read_file/1) |>
+    Enum.zip(feed_formats()) |>
+    Enum.each(fn (x) ->
+      assert get_feed(elem(x,1)) == parse_feed(elem(x, 0))
+    end)
   end
 
   test "store rss content" do
-    assert Enum.count(create_content_map()) == Enum.count(feed_formats())
+    assert Enum.count(create_content_list()) == Enum.count(feed_formats())
   end
 
   test "find rss content" do
-    content_map = create_content_map()
-    feed_formats() |> Enum.each(&(assert find(content_map, Atom.to_string(&1))))
+    content_list = create_content_list()
+    assertion = fn(format) ->
+      assert find(content_list, get_feed_index(format).url) end
+
+    feed_formats() |>
+    Enum.each(assertion)
   end
 
-  # should use test setups to initialize test files
   test "write rss map" do
-    assert create_content_map() |> write("content_map.bin") == :ok
+    assert create_content_list() |> write("content_list.bin") == :ok
   end
 
   test "read rss map" do
-    for content <-  read("content_map.bin") |> Enum.unzip |> elem(1) do
+    for content <-  read("content_list.bin") do
       assert match?(%ExFeedLoader.StoredContent{}, content)
     end
   end
@@ -115,7 +61,8 @@ defmodule ExFeed.Test do
     test_description = "description"
 
     result =
-      for format <- feed_formats() do get_feed_index(format) end |>
+      feed_formats() |>
+      Enum.map(&get_feed_index/1) |>
       add_feed(test_id, test_url, test_description) |>
       Enum.find(&(&1.id == test_id))
 
@@ -126,7 +73,8 @@ defmodule ExFeed.Test do
     test_id = "xkcd_rss"
 
     result =
-      for format <- feed_formats() do get_feed_index(format) end |>
+      feed_formats() |>
+      Enum.map(&get_feed_index/1) |>
       remove_feed(test_id)
 
     assert Enum.count(result) == Enum.count(feed_formats()) - 1
@@ -136,16 +84,11 @@ defmodule ExFeed.Test do
     test_id = "xkcd_rss"
 
     result =
-      for format <- feed_formats() do get_feed_index(format) end |>
+      feed_formats() |>
+      Enum.map(&get_feed_index/1) |>
       get_feed(test_id)
 
     assert result.id == test_id
   end
 
-  #atom identified with feed tag
-  # test "parse with atom" do
-  #   feed = RssFileHelpers.read_file(:atom)
-  #   parsed_feed = Rss.parse(:atom, feed)
-  #   assert match?({:ok, _}, parsed_feed)
-  # end
 end

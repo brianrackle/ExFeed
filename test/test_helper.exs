@@ -14,7 +14,75 @@ defmodule ExFeedTestFileHelpers do
     end
   end
 
-  def get_feed_index(format) do
+  def get_feed(format) when is_atom(format) do
+    case format do
+      :rss -> %ExFeed.Feed{
+        title: "xkcd.com",
+        link: "http://xkcd.com/",
+        description: "xkcd.com: A webcomic of romance and math humor.",
+        items: [
+            %ExFeed.FeedItem{
+              title: "Fixion",
+              source: "http://xkcd.com/1621/",
+              description: "some description",
+              date: "Fri, 25 Dec 2015 05:00:00 -0000",
+              link: "http://xkcd.com/1621/"
+            },
+            %ExFeed.FeedItem{
+              title: "Christmas Settings",
+              source: "http://xkcd.com/1620/",
+              description: "some description",
+              date: "Wed, 23 Dec 2015 05:00:00 -0000",
+              link: "http://xkcd.com/1620/"
+            }
+          ]
+        }
+      :rdf -> %ExFeed.Feed{
+        title: "The Oatmeal - Comics, Quizzes, Stories",
+        link: "http://theoatmeal.com/",
+        description: "The oatmeal tastes better than stale skittles found under the couch cushions",
+        items: [
+            %ExFeed.FeedItem{
+            title: "Autocorrect hates you",
+            source: "http://theoatmeal.com",
+            description: "some description",
+            date: "2015-12-15T20:02:00+01:00",
+            link: "http://theoatmeal.com/comics/autocorrect"
+            },
+            %ExFeed.FeedItem{
+              title: "Are you having a bad day?",
+              source: "http://theoatmeal.com",
+              description: "some description",
+              date: "2015-12-09T19:49:49+01:00",
+              link: "http://theoatmeal.com/blog/where_matt"
+            }
+          ]
+        }
+      :atom -> %ExFeed.Feed{
+        title: "xkcd.com",
+        link: "http://xkcd.com/",
+        description: "",
+        items: [
+            %ExFeed.FeedItem{
+            title: "Fixion",
+            source: nil,
+            description: "description",
+            date: "2015-12-25T00:00:00Z",
+            link: "http://xkcd.com/1621/"
+            },
+            %ExFeed.FeedItem{
+              title: "Christmas Settings",
+              source: nil,
+              description: "description",
+              date: "2015-12-23T00:00:00Z",
+              link: "http://xkcd.com/1620/"
+            }
+          ]
+        }
+    end
+  end
+
+  def get_feed_index(format) when is_atom(format) do
     case format do
       :rss -> %ExFeedLoader.FeedIndex{id: "xkcd_rss",
         url: "http://xkcd.com/rss.xml",
@@ -28,16 +96,12 @@ defmodule ExFeedTestFileHelpers do
     end
   end
 
-  def content_list() do
-    for format <- feed_formats(), do: "#{format} test" # read_file(format)
-  end
-
-  def create_content_map() do
-    reducer = fn(x, acc) ->
-      ExFeedLoader.store(acc, Atom.to_string(elem(x, 0)), elem(x, 1) ) end
-
-    Enum.zip(feed_formats(), content_list()) |>
-    Enum.reduce(%{}, reducer)
+  def create_content_list() do
+    for format <- feed_formats() do
+      %ExFeedLoader.StoredContent{url: get_feed_index(format).url,
+        timestamp: :erlang.system_time(:seconds),
+        content: "#{format} test"}
+    end
   end
 
 end
