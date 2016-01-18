@@ -1,6 +1,5 @@
-defmodule ExFeed do
+defmodule ExFeed.Parser do
   import SweetXml, only: [xpath: 2, xpath: 3, sigil_x: 2]
-  import HTTPoison, only: [get: 1]
 
   defmodule FeedItem do
     defstruct title: nil, link: nil, description: nil, date: nil
@@ -8,13 +7,6 @@ defmodule ExFeed do
 
   defmodule Feed do
     defstruct title: nil, link: nil, description: nil, items: []
-  end
-
-  # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
-  # feed.title
-  # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
-  def get_doc(url) when is_binary(url) do
-    with {:ok, %HTTPoison.Response{status_code: 200, body: body}} <- get(url), do: body
   end
 
   def parse_feed(doc) when is_binary(doc) do

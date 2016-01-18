@@ -13,6 +13,11 @@ defmodule ExFeed.Server do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
 
+  # def init([]) do
+  #   schedule_refresh_content()
+  #   {:ok, []}
+  # end
+
   def get_doc(url) do
     GenServer.call(__MODULE__, {:get_doc, url})
   end
@@ -29,21 +34,37 @@ defmodule ExFeed.Server do
     GenServer.call(__MODULE__, {:feed_type, doc})
   end
 
+  def refresh_content(state) do
+    # Do your work here and return state
+    IO.puts("Refreshing content")
+    state
+  end
+
+  defp schedule_refresh_content() do
+    Process.send_after(self(), :refresh_content, 60_000 * 60) #process every hour
+  end
+
   # GenServer interface
+  def handle_info(:refresh_content, state) do
+    state = refresh_content(state)
+    schedule_refresh_content()
+    {:noreply, state}
+  end
+
   def handle_call({:get_doc, url}, _from, state) do
-    {:reply, ExFeed.get_doc(url), state}
+    {:reply, ExFeed.Loader.get_doc(url), state}
   end
 
   def handle_call({:parse_feed, doc}, _from, state) do
-    {:reply, ExFeed.parse_feed(doc), state}
+    {:reply, ExFeed.Parser.parse_feed(doc), state}
   end
 
   def handle_call({:parse_feed, format, doc}, _from, state) do
-    {:reply, ExFeed.parse_feed(format, doc), state}
+    {:reply, ExFeed.Parser.parse_feed(format, doc), state}
   end
 
   def handle_call({:feed_type, doc}, _from, state) do
-    {:reply, ExFeed.feed_type(doc), state}
+    {:reply, ExFeed.Parser.feed_type(doc), state}
   end
 
 end

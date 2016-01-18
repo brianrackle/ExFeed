@@ -1,4 +1,5 @@
-defmodule ExFeedLoader do
+defmodule ExFeed.Loader do
+  import HTTPoison, only: [get: 1]
 
   defmodule StoredContent do
     defstruct url: nil, timestamp: 0, content: nil
@@ -7,6 +8,13 @@ defmodule ExFeedLoader do
   # feedindex is iterated through by daemon once every 30 minutes to get updated StoredContent
   defmodule FeedIndex do
     defstruct id: nil, url: nil, description: nil
+  end
+
+  # {:ok, feed} = ExFeed.get_feed("http://xkcd.com/rss.xml")
+  # feed.title
+  # for item <- feed.items, do: IO.puts("Title: #{item.title}\nDescription: #{item.description}\nPublication:#{item.date}\n------\n\n")
+  def get_doc(url) when is_binary(url) do
+    with {:ok, %HTTPoison.Response{status_code: 200, body: body}} <- get(url), do: body
   end
 
   def add_feed(index_list, id, url, description) do

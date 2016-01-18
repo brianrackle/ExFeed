@@ -1,9 +1,9 @@
 defmodule ExFeed.Test do
   use ExUnit.Case
-  doctest ExFeed
+  doctest ExFeed.Parser
 
-  import ExFeed
-  import ExFeedLoader
+  import ExFeed.Parser
+  import ExFeed.Loader
 
   import ExFeedTestFileHelpers
 
@@ -19,7 +19,7 @@ defmodule ExFeed.Test do
     Enum.map(&read_file/1) |>
     Enum.zip(feed_formats()) |>
     Enum.each(fn (x) ->
-      assert match?(%ExFeed.Feed{}, parse_feed(elem(x, 0)))
+      assert match?(%ExFeed.Parser.Feed{}, parse_feed(elem(x, 0)))
     end)
   end
 
@@ -50,9 +50,11 @@ defmodule ExFeed.Test do
   end
 
   test "read rss map" do
-    for content <-  read("content_list.bin") do
-      assert match?(%ExFeedLoader.StoredContent{}, content)
-    end
+    create_content_list() |> write("content_list.bin")
+    read("content_list.bin") |>
+    Enum.each(fn (content) ->
+      assert match?(%ExFeed.Loader.StoredContent{}, content)
+    end)
   end
 
   test "add feed prevent duplicates" do
